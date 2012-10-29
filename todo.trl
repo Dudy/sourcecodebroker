@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application item="y" tlversion="1.4.1"
+line0="{*Name*}"
+line1="{*Name*}"
+icon="application">
+<Name type="Text" ref="y">SourcecodeBroker</Name>
+<common item="y"
+line0="{*Name*}"
+line1="{*Name*}"
+childtype="text"
+icon="book">
+<Name type="Text" ref="y">Allgemeines</Name>
+</common>
+<common item="y">
+<Name>Infrastruktur einrichten</Name>
+<text item="y"
+line0="{*Name*}"
+line1="{*Name*}"
+line2="{*Text*}"
+icon="doc">
+<Name type="Text" ref="y">TreeLine Projektdefinition</Name>
+<Text type="Text" lines="20">- diese Datei hier</Text>
+</text>
+<text item="y">
+<Name>NetBeans Projekt</Name>
+<Text>- muß GAE und Vaadin unterstützen
+- muß bei GitHub gehostet sein
+- mit Prototyp</Text>
+</text>
+<text item="y">
+<Name>GitHub Repository</Name>
+<Text>- neues private repository anlegen</Text>
+</text>
+<text item="y">
+<Name>GAE Application</Name>
+<Text>- neue application anlegen</Text>
+</text>
+<text item="y">
+<Name>Domains registrieren</Name>
+<Text>sourcecodebroker.com, sourcecodebroker.net, sourcecodebroker.info und sourcecodebroker.org bei godaddy registrieren
+sourcecodebroker.de bei eurodns registrieren</Text>
+</text>
+</common>
+<common item="y">
+<Name>Login</Name>
+<text item="y">
+<Name>Anmeldung per Google Account</Name>
+<Text>- GAE user account Mechanismus zur Anmeldung verwenden
+- dies sofort einbauen, ist wohl am einfachsten</Text>
+</text>
+<text item="y">
+<Name>Anmeldung per Facebook Account</Name>
+<Text>- Facebook user account Mechanismus zur Anmeldung verwenden
+- dies später einbauen, hab keine Ahnung wie das geht</Text>
+</text>
+<text item="y">
+<Name>Anmeldung per internem Account</Name>
+<Text>- eigenen Mechanismus zur Anmeldung verwenden
+- kann ich vielleicht in meinen Hausaufgaben zu CS253 nachschauen
+- muß von Python nach Java portiert werden
+- dies später einbauen</Text>
+</text>
+</common>
+<data item="y"
+line0="{*Name*}"
+line1="{*Name*}"
+childtype="text"
+icon="table">
+<Name type="Text" ref="y">Datenstruktur definieren</Name>
+<text item="y">
+<Name>Projekt</Name>
+<Text>- zu einem Projekt gehören
+    - ein Projektmanager (Rolle, ein Benutzer der Anwendung)
+    - eine Menge von Tasks
+    - eine Liste der Bibliotheken, die in diesem Projekt zum Einsatz kommen</Text>
+</text>
+<text item="y">
+<Name>Rollen</Name>
+<Text>- Projektmanager
+- Coder
+- Tester</Text>
+</text>
+<text item="y">
+<Name>Task</Name>
+<Text>- gehört zu einem Projekt
+- wird erstellt von einem Projektmanager
+- hat zugeordnete Requirements (min. eines, sonst weiß ja keiner, was programmiert werden soll)
+- kann zugeordnete Tests haben (besser wär's)
+- ein Task kann viele Tests, ein Test nur einen Task haben (Task:Test = 1:n)
+- beschreibt ein Feature, eine Methode</Text>
+</text>
+<text item="y">
+<Name>Test</Name>
+<Text>- gehört zu einem Task
+- testet die Funktionalität eines Tasks
+- ein Task kann viele Tests, ein Test nur einen Task haben (Task:Test = 1:n)</Text>
+</text>
+<text item="y">
+<Name>Requirement</Name>
+<Text>- beschreibt einen Task (allgemeine Intention)
+- beschreibt das Interface des Tasks (Eingangsdaten und Aufruf)
+- definiert die Anforderungen, die der Task erfüllen muß (Ausgangsdaten)</Text>
+</text>
+</data>
+<notes item="y"
+line0="{*Name*}"
+line1="{*Name*}"
+childtype="text"
+icon="clipboard_text">
+<Name type="Text" ref="y">Notizen</Name>
+<text item="y">
+<Name>Kommentare</Name>
+<Text>- Forum, Diskussion, Chat oder so was
+- min. Projektmanager und Coder eines Tasks brauchen Kommunikationsinfrastruktur</Text>
+</text>
+<text item="y">
+<Name>Markierung</Name>
+<Text>- Tasks sollen markiert werden können
+- Projektmanager: &quot;high priority&quot;, &quot;medium priority&quot;, &quot;low priority&quot;, vielleicht später Anzahl Punkte, die der Coder für den Task bekommt
+- Coder: &quot;requirement unclear&quot;, &quot;bad test coverage&quot;</Text>
+</text>
+<text item="y">
+<Name>Belohnung</Name>
+<Text>- während Betaphase keine Belohnung
+- später vergibt der Projektmanager pro Task Punkte
+- Coder bekommt Punkte des Tasks, wenn Projektmanager annimmt
+- Projektmanager kann 100 Punkte kaufen für x Euro
+- Coder kann Punkte einlösen für (0.9x) Euro
+- vielleicht Währungseinheit BitCoin?
+- wie steht's mit dem Bankengesetz? So wie hier beschrieben ist das nicht nur ein Vermitteln von Käufer und Verkäufer, sondern ein Zwischenparken von Vermögen, da gelten andere Gesetze</Text>
+</text>
+<text item="y">
+<Name>Vorschläge</Name>
+<Text>- Coder können Projektmanagern Vorschläge machen, etwa zu verwendende Bibliotheken</Text>
+</text>
+<text item="y">
+<Name>GUI</Name>
+<Text>- verschiedene Ansichten
+    - alle
+    - nach Projekt
+    - nach Programmiersprache (könnte verschiedene geben, ist für die Webanwendung vielleicht sogar transparant!)
+    - nach Projektmanager
+    - nach Coder
+    - nach Thema
+    - Suche</Text>
+</text>
+</notes>
+<gui item="n"
+line0="{*Name*}"
+line1="{*Name*}"
+childtype="text"
+icon="application_form">
+<Name type="Text" ref="y"></Name>
+</gui>
+</application>

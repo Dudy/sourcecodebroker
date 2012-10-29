@@ -1,0 +1,83 @@
+@import url(../runo/styles.css);
+/* Using the old default theme (runo) as the basis for now */
+
+.toolbar {
+    background-color: #e0edff;
+    height:100px;
+    width:100%;
+}
+
+.footer {
+    background-color: #e0edff;
+    height:100px;
+    width:100%;
+}
+
+.footer .signature {
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-size: 14px;
+    color: #0066ff;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.header {
+     background-color: #e0edff;
+}
+
+.v-button-multiline, .v-button-caption {
+   white-space: pre;
+}
+
+.header .appname {
+    font-family: AsseenonTV,Geneva,Arial,Helvetica,sans-serif;
+    font-size: 36px;
+    font-variant: small-caps;
+    color: #0066ff;
+    vertical-align: middle;
+    text-align: right;
+}
+
+.header .v-button {
+    display: block;
+    height: 55px;
+    background: transparent;
+    border: none;
+    text-align: center;
+}
+
+.header .v-button img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+.header .v-button span {
+    font-size: x-small;
+    text-shadow: #fafafa 1px 1px 0;
+}
+
+.header .v-button .v-button-wrap, 
+.header .v-disabled.v-button .v-button-wrap {
+    background: transparent;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.header .v-button:active .v-button-wrap,
+.header .v-button.v-pressed .v-button-wrap {
+    background: transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+.v-app {
+    background: #d0e2ec; /* the nice light blue */
+}
