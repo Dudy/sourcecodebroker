@@ -6,7 +6,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import de.podolak.sourcecodebroker.Utilities;
+import de.podolak.sourcecodebroker.util.Utilities;
 
 /**
  *
@@ -30,7 +30,7 @@ public class HeaderLayout extends HorizontalLayout implements Button.ClickListen
         setStyleName("header");
         setWidth("100%");
         
-        Label appname = new Label("SourcecodeBroker");
+        Label appname = new Label(Utilities.getI18NText("window.title"));
         addComponent(appname);
         setComponentAlignment(appname, Alignment.MIDDLE_RIGHT);
         appname.setStyleName("appname");

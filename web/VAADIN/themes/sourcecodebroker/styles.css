@@ -25,7 +25,7 @@
      background-color: #e0edff;
 }
 
-.v-button-multiline, .v-button-caption {
+.v-button-multiline, .v-button-caption, .multiline {
    white-space: pre;
 }
 
@@ -80,4 +80,24 @@
 
 .v-app {
     background: #d0e2ec; /* the nice light blue */
+}
+
+.taskLayout .label {
+    width:100px;
+}
+
+.taskLayout .data {
+    color: #000000;
+}
+
+.taskLayout .code {
+    font-family: 'Courier New',Courier,monospace;
+}
+
+.taskList .v-panel-caption {
+    color: #0066ff;
+}
+
+.taskList .v-panel-caption-panelName {
+    color: #0066ff;
 }

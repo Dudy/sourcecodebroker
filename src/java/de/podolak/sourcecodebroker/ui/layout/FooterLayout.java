@@ -1,8 +1,11 @@
 package de.podolak.sourcecodebroker.ui.layout;
 
+import com.vaadin.terminal.ExternalResource;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Link;
+import de.podolak.sourcecodebroker.util.Utilities;
 
 /**
  *
@@ -20,14 +23,14 @@ public class FooterLayout extends HorizontalLayout {
         setStyleName("footer");
         setWidth("100%");
         
-        Label text = new Label("footer");
+        Label text = new Label(Utilities.getI18NText("footer.dummytext"));
         addComponent(text);
         
-        Label signature = new Label("by Dirk Podolak 2012");
-        addComponent(signature);
-        setComponentAlignment(signature, Alignment.MIDDLE_RIGHT);
-        signature.setStyleName("signature");
-        setExpandRatio(signature, 1);
+        Link link = new Link(Utilities.getI18NText("footer.dudytext"), new ExternalResource(Utilities.getI18NText("footer.dudylink")));
+        addComponent(link);
+        setComponentAlignment(link, Alignment.MIDDLE_RIGHT);
+        link.setStyleName("signature");
+        setExpandRatio(link, 1);
     }
     
 }

@@ -1,0 +1,39 @@
+{
+    "id": 1,
+    "serializationVersion": 1,
+    "projectName": "Testprojekt 1",
+    "taskList": [
+        {
+            "taskName": "Geburtsdatum validieren",
+            "codeTemplate": "private boolean validBirthdate(java.utilDate date) {\n\treturn false;\n}",
+            "requirementList": [
+                {
+                    "shortText": "gültiges Datum",
+                    "description": "Das Datum muß ein reales Datum sein."
+                },
+                {
+                    "shortText": "Datum nicht in Zukunft",
+                    "description": "Das Datum in der Vergangenheit liegen."
+                },
+                {
+                    "shortText": "Datum nicht zu lange her",
+                    "description": "Das Datum muß nach dem 25. August 1896 liegen (Besse Cooper wurde am 26. August 1896 geboren und ist heute (29.10.2012) der älteste Mensch der Welt)."
+                }
+            ]
+        },
+        {
+            "taskName": "Körpergröße validieren",
+            "codeTemplate": "private boolean validHeight(int centimeter) {\n\treturn false;\n}",
+            "requirementList": [
+                {
+                    "shortText": "mindestens 50 Zentimeter",
+                    "description": "Die Größe muß mindestens 50 Zentimeter betragen."
+                },
+                {
+                    "shortText": "höchstens drei Meter",
+                    "description": "Die Größe darf höchstens 300 Zentimeter betragen."
+                }
+            ]
+        }
+    ]
+}
