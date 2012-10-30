@@ -1,4 +1,4 @@
-package de.podolak.sourcecodebroker.ui.layout.task;
+package de.podolak.sourcecodebroker.ui.layout.project;
 
 import com.vaadin.data.Container;
 import com.vaadin.data.Item;

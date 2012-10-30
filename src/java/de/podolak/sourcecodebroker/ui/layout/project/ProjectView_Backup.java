@@ -1,4 +1,4 @@
-package de.podolak.sourcecodebroker.ui.layout.task;
+package de.podolak.sourcecodebroker.ui.layout.project;
 
 /**
  *
@@ -13,17 +13,17 @@ import de.podolak.sourcecodebroker.data.Task;
 import de.podolak.sourcecodebroker.util.Utilities;
 
 @SuppressWarnings("serial")
-public class TaskList extends HorizontalLayout /* implements Accordion.SelectedTabChangeListener */ {
+public class ProjectView_Backup extends HorizontalLayout /* implements Accordion.SelectedTabChangeListener */ {
 
     private static final ThemeResource icon = new ThemeResource("icons/mail_new.png");
 
     private Accordion a;
     
-    public TaskList(Project project) {
+    public ProjectView_Backup(Project project) {
         setMargin(true);
         addStyleName("taskList");
         
-        Panel panel = new Panel(Utilities.getI18NText("taskList.panelName"));
+        Panel panel = new Panel(Utilities.getI18NText("projectView.taskList.panelName"));
         panel.setSizeFull();
         panel.addStyleName("panelName");
         

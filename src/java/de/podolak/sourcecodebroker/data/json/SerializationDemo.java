@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.podolak.sourcecodebroker.data.Project;
+import de.podolak.sourcecodebroker.data.code.Node;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -21,7 +22,6 @@ public class SerializationDemo {
     public static void write(Project project) {
         try {
             mapper.writeValue(new File("project01-modified.json"), project);
-            //mapper.writeValue(
         } catch (JsonGenerationException ex) {
             Logger.getLogger(SerializationDemo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JsonMappingException ex) {
@@ -50,6 +50,20 @@ public class SerializationDemo {
     public static Project read() {
         try {
             return mapper.readValue(new File("project01.json"), Project.class);
+        } catch (JsonParseException ex) {
+            Logger.getLogger(SerializationDemo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JsonMappingException ex) {
+            Logger.getLogger(SerializationDemo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(SerializationDemo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    
+    public static Node readNode() {
+        try {
+            return mapper.readValue(new File("sourcecode01.json"), Node.class);
         } catch (JsonParseException ex) {
             Logger.getLogger(SerializationDemo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JsonMappingException ex) {
@@ -91,5 +105,21 @@ public class SerializationDemo {
         }
         
         return project;
+    }
+    
+    public static Node getDummyNode() {
+        Node node = null;
+        
+        try {
+            node = mapper.readValue(
+                    SerializationDemo.class
+                        .getResource("/de/podolak/sourcecodebroker/data/json/sourcecode01.json")
+                        .openStream(),
+                    Node.class);
+        } catch (IOException ex) {
+            Logger.getLogger(SerializationDemo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return node;
     }
 }

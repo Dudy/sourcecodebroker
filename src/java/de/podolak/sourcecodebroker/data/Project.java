@@ -16,6 +16,9 @@ import java.util.logging.Logger;
  */
 public class Project implements Serializable {
     
+    // TODO: add GitHub repository link where the sourcecode resides
+    // example: this project resides at https://github.com/Dudy/sourcecodebroker.git
+    
     private static final long serialVersionUID = 1L;
     
     public static final int CURRENT_SERIALIZATION_VERSION = 1;

@@ -1,6 +1,5 @@
 package de.podolak.sourcecodebroker;
 
-import de.podolak.sourcecodebroker.util.Utilities;
 import com.vaadin.Application;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.ui.VerticalLayout;
@@ -9,7 +8,8 @@ import de.podolak.sourcecodebroker.data.PersistenceHandler;
 import de.podolak.sourcecodebroker.data.Project;
 import de.podolak.sourcecodebroker.ui.layout.FooterLayout;
 import de.podolak.sourcecodebroker.ui.layout.HeaderLayout;
-import de.podolak.sourcecodebroker.ui.layout.task.TaskList;
+import de.podolak.sourcecodebroker.ui.layout.project.ProjectView;
+import de.podolak.sourcecodebroker.util.Utilities;
 
 @SuppressWarnings("serial")
 public class SourcecodeBrokerApplication extends Application {
@@ -17,6 +17,8 @@ public class SourcecodeBrokerApplication extends Application {
     private Window window;
     private IndexedContainer dataContainer;
     private Project currentProject;
+    
+    private ProjectView projectView;
 
     @Override
     public void init() {
@@ -35,14 +37,14 @@ public class SourcecodeBrokerApplication extends Application {
         getMainWindow().setContent(main);
 
         // header
-        HeaderLayout header = new HeaderLayout();
+        HeaderLayout header = new HeaderLayout(this);
         main.addComponent(header);
 
         // list
-        TaskList taskList = new TaskList(currentProject);
-        taskList.setSizeFull();
-        main.addComponent(taskList);
-        main.setExpandRatio(taskList, 1.0f);
+        projectView = new ProjectView(currentProject);
+        projectView.setSizeFull();
+        main.addComponent(projectView);
+        main.setExpandRatio(projectView, 1.0f);
         
         // header
         FooterLayout footer = new FooterLayout();
@@ -80,6 +82,10 @@ public class SourcecodeBrokerApplication extends Application {
 //            item.getItemProperty("name").setValue(task.getTaskName());
 //        }
         
+    }
+
+    public void updateTaskList() {
+        projectView.update();
     }
     
 }

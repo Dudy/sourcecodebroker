@@ -13,7 +13,7 @@
                 },
                 {
                     "shortText": "Datum nicht in Zukunft",
-                    "description": "Das Datum in der Vergangenheit liegen."
+                    "description": "Das Datum muß in der Vergangenheit liegen."
                 },
                 {
                     "shortText": "Datum nicht zu lange her",

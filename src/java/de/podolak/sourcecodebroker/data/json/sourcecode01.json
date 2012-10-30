@@ -1,0 +1,85 @@
+{
+	"name": "de",
+	"children": [
+		{
+			"name": "podolak",
+			"children": [
+				{
+					"name": "demo",
+					"children": [
+						{
+							"name": "calculator",
+							"children": [
+								{
+									"name": "engine",
+									"children": [
+										{
+											"name": "complextype",
+											"children": [
+												{
+													"name": "Complex",
+													"children": []
+												},
+												{
+													"name": "ComplexCalculator",
+													"children": []
+												}
+											]
+										},
+										{
+											"name": "doubletype",
+											"children": [
+												{
+													"name": "DoubleCalculator",
+													"children": []
+												}
+											]
+										},
+										{
+											"name": "longtype",
+											"children": [
+												{
+													"name": "LongCalculator",
+													"children": []
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "util",
+									"children": [
+										{
+											"name": "Calculation",
+											"children": []
+										},
+										{
+											"name": "Operation",
+											"children": []
+										},
+										{
+											"name": "Type",
+											"children": []
+										}
+									]
+								},
+								{
+									"name": "Calculator",
+									"children": []
+								},
+								{
+									"name": "CalculatorMain",
+									"children": []
+								},
+								{
+									"name": "CommandLineParser",
+									"children": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
