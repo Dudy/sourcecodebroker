@@ -1,37 +1,49 @@
 {
     "id": 1,
     "serializationVersion": 1,
-    "projectName": "Testprojekt 1",
+    "projectName": "Calculator",
     "taskList": [
         {
-            "taskName": "Geburtsdatum validieren",
-            "codeTemplate": "private boolean validBirthdate(java.utilDate date) {\n\treturn false;\n}",
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic int intValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
             "requirementList": [
                 {
-                    "shortText": "gültiges Datum",
-                    "description": "Das Datum muß ein reales Datum sein."
-                },
-                {
-                    "shortText": "Datum nicht in Zukunft",
-                    "description": "Das Datum muß in der Vergangenheit liegen."
-                },
-                {
-                    "shortText": "Datum nicht zu lange her",
-                    "description": "Das Datum muß nach dem 25. August 1896 liegen (Besse Cooper wurde am 26. August 1896 geboren und ist heute (29.10.2012) der älteste Mensch der Welt)."
+                    "shortText": "gerundeter Realteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Ganzzahl soll den gerundeten Wert des Realteils angeben."
                 }
             ]
         },
         {
-            "taskName": "Körpergröße validieren",
-            "codeTemplate": "private boolean validHeight(int centimeter) {\n\treturn false;\n}",
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic long longValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
             "requirementList": [
                 {
-                    "shortText": "mindestens 50 Zentimeter",
-                    "description": "Die Größe muß mindestens 50 Zentimeter betragen."
-                },
+                    "shortText": "gerundeter Imaginärteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Ganzzahl soll den gerundeten Wert des Imaginärteils angeben."
+                }
+            ]
+        },
+        {
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic float floatValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
+            "requirementList": [
                 {
-                    "shortText": "höchstens drei Meter",
-                    "description": "Die Größe darf höchstens 300 Zentimeter betragen."
+                    "shortText": "Realteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Gleitkommazahl soll den Wert des Realteils angeben."
+                }
+            ]
+        },
+        {
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic double doubleValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
+            "requirementList": [
+                {
+                    "shortText": "gerundeter Imaginärteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Gleitkommazahl soll den Wert des Imaginärteils angeben."
                 }
             ]
         }

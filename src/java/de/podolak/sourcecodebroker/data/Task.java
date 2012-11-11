@@ -14,14 +14,16 @@ public class Task implements Serializable {
 
     private String taskName;
     private String codeTemplate;
+    private String path;
     private List<Requirement> requirementList;
 
     public Task() {
     }
 
-    public Task(String taskName, String codeTemplate, List<Requirement> requirementList) {
+    public Task(String taskName, String codeTemplate, String path, List<Requirement> requirementList) {
         this.taskName = taskName;
         this.codeTemplate = codeTemplate;
+        this.path = path;
         this.requirementList = requirementList;
     }
 
@@ -41,6 +43,14 @@ public class Task implements Serializable {
         this.codeTemplate = codeTemplate;
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
     public List<Requirement> getRequirementList() {
         return requirementList;
     }
@@ -54,6 +64,8 @@ public class Task implements Serializable {
         
         descriptionBuilder
                 .append(taskName)
+                .append("\n")
+                .append(path)
                 .append("\n")
                 .append(Utilities.formatCodeTemplate(codeTemplate))
                 .append("\n");

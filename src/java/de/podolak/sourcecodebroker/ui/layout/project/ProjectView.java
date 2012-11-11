@@ -19,6 +19,7 @@ import com.vaadin.ui.AbstractSelect;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.Tree;
 import de.podolak.sourcecodebroker.data.Project;
@@ -26,7 +27,9 @@ import de.podolak.sourcecodebroker.data.Task;
 import de.podolak.sourcecodebroker.data.code.Node;
 import de.podolak.sourcecodebroker.data.json.SerializationDemo;
 import de.podolak.sourcecodebroker.util.Utilities;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class ProjectView extends HorizontalLayout /* implements  Accordion.SelectedTabChangeListener */ {
@@ -42,6 +45,9 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
     
     private Panel projectPanel;
     private Tree projectTree;
+    private Panel taskPanel;
+    
+    private List<Task> currentTaskList = null;
     
     public ProjectView(Project project) {
         this.project = project;
@@ -51,7 +57,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         
         horizontalSplitPanel = new HorizontalSplitPanel();
         horizontalSplitPanel.setSizeFull();
-        horizontalSplitPanel.setSplitPosition(200, Sizeable.UNITS_PIXELS);
+        horizontalSplitPanel.setSplitPosition(400, Sizeable.UNITS_PIXELS);
         horizontalSplitPanel.setFirstComponent(getProjectPanel());
         horizontalSplitPanel.setSecondComponent(getTasksPanel());
         horizontalSplitPanel.setMargin(true);
@@ -65,66 +71,75 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         projectTree.setContainerDataSource(getTreeContainer());
         projectTree.setItemCaptionPropertyId("caption");
         projectTree.setItemCaptionMode(AbstractSelect.ITEM_CAPTION_MODE_PROPERTY);
-        projectTree.addListener(new Listener() {
-
-            @Override
-            public void componentEvent(Event event) {
-                System.out.println("=================================================================");
-                System.out.println(event);
-                System.out.println(event.getComponent());
-                System.out.println(event.getSource());
-                System.out.println("=================================================================");
-            }
-        });
-        projectTree.addListener(new ValueChangeListener() {
-
-            @Override
-            public void valueChange(ValueChangeEvent event) {
-                System.out.println("-----------------------------------------------------------------");
-                System.out.println(event);
-                System.out.println(event.getProperty());
-                System.out.println(event.getProperty().getType());
-                System.out.println(event.getProperty().getValue());
-                System.out.println("-----------------------------------------------------------------");
-            }
-        });
         projectTree.addListener(new ItemClickHandler());
-
-//
-//        setImmediate(true);
-//        setSelectable(true);
-//        setMultiSelect(false);
-//        setNullSelectionAllowed(false);
-//
-//        addListener((ItemClickEvent.ItemClickListener) app);
-//        addListener((Property.ValueChangeListener) app);
-//        addListener((Container.ItemSetChangeListener) app);
-//        addListener((Container.PropertySetChangeListener) app);
-        
         projectPanel.addComponent(projectTree);
         
         return projectPanel;
     }
     
+//    private Panel getTasksPanel() {
+//        taskPanel = new Panel(Utilities.getI18NText("projectView.panelName.taskList"));
+//        taskPanel.setSizeFull();
+//        taskPanel.addStyleName("panelName");
+//        
+//        a = new Accordion();
+//        a.setHeight("100%");
+//        a.setWidth("100%");
+//        
+//        for (Task task : project.getTaskList()) {
+//            a.addTab(
+//                    new TaskLayout(task, rootNode),
+//                    task.getTaskName(),
+//                    icon);
+//        }
+//
+//        taskPanel.setContent(a);
+//        
+//        return taskPanel;
+//    }
+    
     private Panel getTasksPanel() {
-        Panel panel = new Panel(Utilities.getI18NText("projectView.panelName.taskList"));
-        panel.setSizeFull();
-        panel.addStyleName("panelName");
+        taskPanel = new Panel(Utilities.getI18NText("projectView.panelName.taskList"));
+        taskPanel.setSizeFull();
+        taskPanel.addStyleName("panelName");
         
         a = new Accordion();
         a.setHeight("100%");
         a.setWidth("100%");
         
-        for (Task task : project.getTaskList()) {
-            a.addTab(
-                    new TaskLayout(task),
-                    task.getTaskName(),
-                    icon);
-        }
-
-        panel.setContent(a);
+//        if (currentTaskList == null || currentTaskList.isEmpty()) {
+//            a.addTab(new Label(Utilities.getI18NText("projectView.panelName.emptyTaskList")), "");
+//        } else {
+//            for (Task task : currentTaskList) {
+//                a.addTab(
+//                        new TaskLayout(task, rootNode),
+//                        task.getTaskName(),
+//                        icon);
+//            }
+//        }
         
-        return panel;
+        refreshTasksPanel();
+
+        taskPanel.setContent(a);
+        
+        return taskPanel;
+    }
+    
+    private void refreshTasksPanel() {
+        a.removeAllComponents();
+        
+        if (currentTaskList == null || currentTaskList.isEmpty()) {
+            a.addTab(new Label(Utilities.getI18NText("projectView.panelName.emptyTaskList")), "");
+        } else {
+            for (Task task : currentTaskList) {
+                a.addTab(
+                        new TaskLayout(task, rootNode),
+                        task.getTaskName(),
+                        icon);
+            }
+        }
+        
+        a.requestRepaint();
     }
     
     public Task getSelectedTask() {
@@ -158,7 +173,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Projektmanager");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.projectManager"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -169,7 +184,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Erzeugungszeitpunkt");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.createDate"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -180,7 +195,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Zeitpunkt letzte Änderung");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.lastModifyDate"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -191,7 +206,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Anzahl Tasks");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.numberOfTasks"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -202,7 +217,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Anzahl unbearbeiteter Tasks");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.numberOfOpenTasks"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -213,7 +228,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Anzahl Codestücke");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.numberOfSubmittedTasks"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -224,7 +239,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Anzahl akzeptierter Codestücke");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.numberOfAcceptedTasks"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -235,7 +250,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         id++;
         
         item = container.addItem(id);
-        item.getItemProperty("caption").setValue("Anzahl ausgezahlter Credits");
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.numberOfOpenCredits"));
         container.setChildrenAllowed(id, true);
         container.setParent(id, rootId);
         id++;
@@ -245,9 +260,20 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         container.setParent(id, id - 1);
         id++;
         
+        item = container.addItem(id);
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.numberOfAcceptedCredits"));
+        container.setChildrenAllowed(id, true);
+        container.setParent(id, rootId);
+        id++;
+        item = container.addItem(id);
+        item.getItemProperty("caption").setValue("11");
+        container.setChildrenAllowed(id, false);
+        container.setParent(id, id - 1);
+        id++;
+        
         // TODO add root node of source code tree here, get it from GitHub ;-)
         rootNode = SerializationDemo.getDummyNode();
-        fillDataContainer(id, rootNode);
+        addSourcecodeToDataContainer(rootId, id, rootNode);
         
         container.addListener(new ItemSetChangeHandler());
         container.addListener(new PropertySetChangeHandler());
@@ -266,9 +292,15 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
      * @param currentId
      * @param rootNode 
      */
-    private void fillDataContainer(int currentId, Node rootNode) {
+    private void addSourcecodeToDataContainer(int rootId, int currentId, Node rootNode) {
         sourceCodeRootNodeId = currentId;
-        addItem(rootNode, currentId, currentId);
+        
+        Item item = container.addItem(currentId);
+        item.getItemProperty("caption").setValue(Utilities.getI18NText("projectView.treeItem.sourcecode"));
+        container.setChildrenAllowed(currentId, true);
+        container.setParent(currentId, rootId);
+        
+        addItem(rootNode, currentId + 1, currentId);
     }
 
     private int addItem(Node node, int itemId, int parentId) {
@@ -296,7 +328,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
         return newId;
     }
 
-    private Node getNode(int itemId) {
+    private Node getNode(Object itemId) {
         Item item = container.getItem(itemId);
         Node node = new Node(
                 item.getItemProperty("caption").getValue().toString(),
@@ -318,7 +350,7 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
     }
     
     public void update() {
-        
+        // noop
     }
 
     private class ItemSetChangeHandler implements Container.ItemSetChangeListener {
@@ -363,8 +395,14 @@ public class ProjectView extends HorizontalLayout /* implements  Accordion.Selec
 
         @Override
         public void itemClick(ItemClickEvent event) {
+            currentTaskList = new ArrayList<Task>();
+            Node node = getNode(event.getItemId());
+            
+            refreshTasksPanel();
+            
+            
             System.out.println("---------------------------------------------");
-            System.out.println("----- 3");
+            System.out.println("----- 4");
             System.out.println(event);
             System.out.println(event.getItem());
             System.out.println("---------------------------------------------");

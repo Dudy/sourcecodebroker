@@ -10,6 +10,7 @@ import com.vaadin.ui.TextArea;
 import com.vaadin.ui.VerticalLayout;
 import de.podolak.sourcecodebroker.data.Requirement;
 import de.podolak.sourcecodebroker.data.Task;
+import de.podolak.sourcecodebroker.data.code.Node;
 import de.podolak.sourcecodebroker.util.Utilities;
 
 /**
@@ -19,9 +20,11 @@ import de.podolak.sourcecodebroker.util.Utilities;
 public class TaskLayout extends VerticalLayout {
 
     private Task task;
+    private Node rootNode;
 
-    public TaskLayout(Task task) {
+    public TaskLayout(Task task, Node rootNode) {
         this.task = task;
+        this.rootNode = rootNode;
         init();
     }
 
@@ -86,6 +89,22 @@ public class TaskLayout extends VerticalLayout {
         table.setWidth("100%");
         layout.addComponent(table);
         layout.setExpandRatio(table, 1);
+        addComponent(layout);
+        
+        layout = new HorizontalLayout();
+        layout.setSizeFull();
+        label = new Label(Utilities.getI18NText("taskLayout.context"));
+        label.addStyleName("label");
+        label.setWidth("100px");
+        layout.addComponent(label);
+        
+        ta = new TextArea();
+        ta.addStyleName("data code");
+        ta.setWidth("100%");
+        ta.setValue(rootNode.getTextByPath(task.getPath())); // use Utilities.formatCodeTemplate() when it has a cool code formatter (not yet)
+        ta.setRows(20);
+        layout.addComponent(ta);
+        layout.setExpandRatio(ta, 1);
         addComponent(layout);
     }
 

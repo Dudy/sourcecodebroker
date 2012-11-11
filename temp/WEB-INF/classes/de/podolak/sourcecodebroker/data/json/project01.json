@@ -1,0 +1,51 @@
+{
+    "id": 1,
+    "serializationVersion": 1,
+    "projectName": "Calculator",
+    "taskList": [
+        {
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic int intValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
+            "requirementList": [
+                {
+                    "shortText": "gerundeter Realteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Ganzzahl soll den gerundeten Wert des Realteils angeben."
+                }
+            ]
+        },
+        {
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic long longValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
+            "requirementList": [
+                {
+                    "shortText": "gerundeter Imaginärteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Ganzzahl soll den gerundeten Wert des Imaginärteils angeben."
+                }
+            ]
+        },
+        {
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic float floatValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
+            "requirementList": [
+                {
+                    "shortText": "Realteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Gleitkommazahl soll den Wert des Realteils angeben."
+                }
+            ]
+        },
+        {
+            "taskName": "komplexe Zahlen einführen",
+            "path": "de.podolak.demo.calculator.engine.complextype.Complex",
+            "codeTemplate": "@Override\npublic double doubleValue() {\n\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n}",
+            "requirementList": [
+                {
+                    "shortText": "gerundeter Imaginärteil",
+                    "description": "Das ist jetzt ein bißchen gekünstelt, aber was soll's. Diese Gleitkommazahl soll den Wert des Imaginärteils angeben."
+                }
+            ]
+        }
+    ]
+}

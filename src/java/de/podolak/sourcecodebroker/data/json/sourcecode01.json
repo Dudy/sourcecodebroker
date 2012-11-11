@@ -18,10 +18,12 @@
 											"children": [
 												{
 													"name": "Complex",
+                                                    "text": "package de.podolak.demo.calculator.engine.complextype;\n\npublic class Complex extends Number {\n\t\n\t@Override\n\tpublic int intValue() {\n\t\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n\t}\n\t\n\t@Override\n\tpublic long longValue() {\n\t\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n\t}\n\t\n\t@Override\n\tpublic float floatValue() {\n\t\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n\t}\n\t\n\t@Override\n\tpublic double doubleValue() {\n\t\tthrow new UnsupportedOperationException(\"Not supported yet.\");\n\t}\n\n}",
 													"children": []
 												},
 												{
 													"name": "ComplexCalculator",
+                                                    "text": "package de.podolak.demo.calculator.engine.complextype;\n\nimport de.podolak.demo.calculator.Calculator;\nimport de.podolak.demo.calculator.util.Calculation;\npublic class ComplexCalculator implements Calculator {\n\t\n\t@Override\n\tpublic Number calculate(Calculation calculation) {\n\t\tComplex result = null;\n\t\t\n\t\t// TODO\n\t\t\n\t\treturn result;\n\t}\n\t}",
 													"children": []
 												}
 											]
@@ -31,6 +33,7 @@
 											"children": [
 												{
 													"name": "DoubleCalculator",
+                                                    "text": "package de.podolak.demo.calculator.engine.doubletype;\n\nimport de.podolak.demo.calculator.Calculator;\nimport de.podolak.demo.calculator.util.Calculation;\npublic class DoubleCalculator implements Calculator {\n\t\n\t@Override\n\tpublic Number calculate(Calculation calculation) {\n\t\tDouble result = null;\n\t\t\n\t\t// TODO\n\t\t\n\t\treturn result;\n\t}\n\t}",
 													"children": []
 												}
 											]
@@ -40,6 +43,7 @@
 											"children": [
 												{
 													"name": "LongCalculator",
+                                                    "text": "package de.podolak.demo.calculator.engine.longtype;\n\nimport de.podolak.demo.calculator.Calculator;\nimport de.podolak.demo.calculator.util.Calculation;\npublic class LongCalculator implements Calculator {\n\t\n\t@Override\n\tpublic Number calculate(Calculation calculation) {\n\t\tLong result = null;\n\t\t\n\t\t// TODO\n\t\t\n\t\treturn result;\n\t}\n\t}",
 													"children": []
 												}
 											]
@@ -51,28 +55,34 @@
 									"children": [
 										{
 											"name": "Calculation",
+                                            "text": "not available",
 											"children": []
 										},
 										{
 											"name": "Operation",
+                                            "text": "not available",
 											"children": []
 										},
 										{
 											"name": "Type",
+                                            "text": "not available",
 											"children": []
 										}
 									]
 								},
 								{
 									"name": "Calculator",
+                                    "text": "not available",
 									"children": []
 								},
 								{
 									"name": "CalculatorMain",
+                                    "text": "not available",
 									"children": []
 								},
 								{
 									"name": "CommandLineParser",
+                                    "text": "package de.podolak.demo.calculator;\n\nimport de.podolak.demo.calculator.util.Calculation;\n\npublic class CommandLineParser {\n\n\tpublic static Calculation parseCalculation(String[] args) {\n\t\tCalculation calculation = null;\n\t\t\n\t\t// TODO\n\t\t\n\t\treturn calculation;\n\t}\n\n}",
 									"children": []
 								}
 							]

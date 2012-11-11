@@ -16,6 +16,7 @@ import java.util.List;
 public class Node implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    public static final String NULL_VALUE = "not available";
 
     private String name;
     private String text;
@@ -34,12 +35,9 @@ public class Node implements Serializable {
     }
     
     public Node(String name, String text, List<Node> children) {
+        checkInvariant();
+        
         this.name = name;
-        
-        if (text != null && !text.isEmpty() && children != null && children.size() > 0) {
-            throw new IllegalArgumentException("text and children cannot be filled both");
-        }
-        
         this.text = text;
         this.children = children;
         
@@ -61,10 +59,7 @@ public class Node implements Serializable {
     }
 
     public void setText(String text) {
-        if (text != null && !text.isEmpty() && children != null && children.size() > 0) {
-            throw new IllegalArgumentException("text and children cannot be filled both");
-        }
-        
+        checkInvariant();
         this.text = text;
     }
 
@@ -73,10 +68,7 @@ public class Node implements Serializable {
     }
 
     public void setChildren(List<Node> children) {
-        if (text != null && !text.isEmpty() && children != null && children.size() > 0) {
-            throw new IllegalArgumentException("text and children cannot be filled both");
-        }
-        
+        checkInvariant();
         this.children = children;
     }
     
@@ -90,6 +82,39 @@ public class Node implements Serializable {
     
     public int getNumberOfChildren() {
         return this.children.size();
+    }
+    
+    private void checkInvariant() {
+        if (text != null && !text.isEmpty() && !NULL_VALUE.equals(text) && children != null && children.size() > 0) {
+            throw new IllegalArgumentException("text and children cannot be filled both");
+        }
+    }
+    
+    public String getTextByPath(String path) {
+        if (path == null || path.isEmpty()) {
+            return null;
+        }
+        
+        String textByPath = null;
+        String[] parts = path.split("\\.", 2);
+        
+        if (parts[0].equals(name)) {
+            if (parts.length == 1) {
+                textByPath = text;
+            } else {
+                if (children != null && children.size() > 0) {
+                    for (Node child : children) {
+                        textByPath = child.getTextByPath(parts[1]);
+                        
+                        if (textByPath != null) {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        
+        return textByPath;
     }
 
     @Override
